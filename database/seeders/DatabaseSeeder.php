@@ -26,9 +26,9 @@ class DatabaseSeeder extends Seeder
         Department::factory(10)->create();
 
         Employee::factory()
-            ->count(10)
+            ->count(100000)
             ->has(EmployeeDetail::factory())
             ->create();
-
+        // can be optimize with chunk by chunk approach- farnan
     }
 }
