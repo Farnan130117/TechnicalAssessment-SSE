@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('employee_details', function (Blueprint $table) {
             $table->id();
+            $table->uuid('employee_id');
+
+            $table->string('designation')->index();
+            $table->float('salary')->index();
+            $table->text('address')->nullable();
+            $table->date('joined_date')->index();
+
+
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->index('employee_id');
+
             $table->timestamps();
         });
     }

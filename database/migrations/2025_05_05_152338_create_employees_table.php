@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+
+            $table->string('name')->index();
+            $table->string('email')->unique();
+
+            $table->foreignId('department_id')->constrained('departments')->onDelete('cascade');
+            $table->index('department_id');
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
